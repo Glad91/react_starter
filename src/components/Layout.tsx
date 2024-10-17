@@ -1,14 +1,16 @@
-import { Outlet } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer';
+import { Outlet } from "react-router-dom";
+import Header from "./Header";
+import Footer from "./Footer";
+import { Toaster } from "@/components/ui/toaster.tsx";
 
 function Layout() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-grow container mx-auto p-4">
+      <main className="container mx-auto flex-grow p-4">
         <Outlet />
       </main>
+      <Toaster />
       <Footer />
     </div>
   );
