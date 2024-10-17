@@ -1,13 +1,13 @@
 import { create } from "zustand";
 import {
-  getFirestore,
-  collection,
   addDoc,
+  collection,
   deleteDoc,
-  updateDoc,
   doc,
+  getFirestore,
   onSnapshot,
   Timestamp,
+  updateDoc,
 } from "firebase/firestore";
 
 // Définir l'interface des tâches (Todo) et du store Zustand
@@ -29,7 +29,6 @@ interface TodoStore {
   updateTodo: (id: string, newTache: string, fait: boolean) => Promise<void>;
 }
 
-// Créer un store Zustand
 export const useTodoStore = create<TodoStore>((set, get) => ({
   todos: [],
   loading: true,
@@ -39,8 +38,9 @@ export const useTodoStore = create<TodoStore>((set, get) => ({
   fetchTodos: () => {
     const db = getFirestore();
     set({ loading: true, error: null });
+    console.log(get);
 
-    const unsubscribe = onSnapshot(
+    return onSnapshot(
       collection(db, "todos"),
       (querySnapshot) => {
         const fetchedTodos = querySnapshot.docs.map((doc) => ({
@@ -60,9 +60,7 @@ export const useTodoStore = create<TodoStore>((set, get) => ({
         set({ error: "Erreur lors du chargement des tâches", loading: false });
         console.error("Erreur lors de la récupération des tâches :", error);
       },
-    );
-
-    return unsubscribe; // Retourner la fonction de désabonnement pour nettoyer lors du démontage
+    ); // Retourner la fonction de désabonnement pour nettoyer lors du démontage
   },
 
   // Fonction pour ajouter une nouvelle tâche
