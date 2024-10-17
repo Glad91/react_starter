@@ -1,22 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/hooks/use-toast";
-import { useEffect } from "react";
-import { useTodoStore } from "@/stores/todoStore.tsx";
 
 function Home() {
   const { toast } = useToast();
-  const { todos, loading, fetchTodos } = useTodoStore();
-
-  useEffect(() => {
-    const unsubscribe = fetchTodos(); // Récupérer les tâches lors du montage du composant
-    console.log("Unsubscribe:", todos);
-    return () => unsubscribe; // Nettoyer l'écouteur lors du démontage
-  }, [fetchTodos]);
-
-  if (loading) {
-    return <div>Loading...</div>; // Afficher un indicateur de chargement
-  }
 
   return (
     <div className="flex min-h-[calc(100vh-12rem)] flex-col items-center justify-center">
@@ -42,13 +29,6 @@ function Home() {
       >
         Toast !
       </Button>
-      <div>
-        <ul>
-          {todos.map((todo) => (
-            <li key={todo.id}>{todo.tache}</li>
-          ))}
-        </ul>
-      </div>
     </div>
   );
 }
