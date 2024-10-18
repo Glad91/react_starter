@@ -133,7 +133,7 @@ export default function Todo() {
       setTodos(sortedTodos);
       toast({
         title: `Mise a jour effectuée`,
-        description: `La tâche  a été modifiée avec succès.`,
+        description: `Données mise a jour avec succès.`,
       });
       setLoading(false); // Désactiver le chargement après la récupération
     });

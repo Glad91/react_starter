@@ -60,6 +60,13 @@ function Header() {
             <Link to="/">Home</Link>
           </Button>
           <Button
+            variant={isActiveLink("/gestion") ? "default" : "ghost"}
+            className={`${isActiveLink("/gestion") ? "bg-primary" : ""}`}
+            asChild
+          >
+            <Link to="/gestion">Gestion</Link>
+          </Button>
+          <Button
             variant={isActiveLink("/todo") ? "default" : "ghost"}
             className={`${isActiveLink("/todo") ? "bg-primary" : ""}`}
             asChild
