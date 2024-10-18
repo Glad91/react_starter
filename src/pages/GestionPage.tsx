@@ -37,21 +37,21 @@ export default function GestionDashboard() {
 
         <TabsContent value="depenses">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-1">
+            {/* Tableau des Dépenses */}
+            <Card>
+              <CardContent className="pt-4">
+                <DepenseTable
+                  onEditExpense={(depense) => setExpenseToEdit(depense)} // Gérer l'édition
+                />
+              </CardContent>
+            </Card>
+
             {/* Formulaire des Dépenses */}
             <Card>
               <CardContent className="pt-4">
                 <DepenseForm
                   expenseToEdit={expenseToEdit} // Passer la dépense à éditer
                   onSuccess={() => setExpenseToEdit(null)} // Réinitialiser après l'édition
-                />
-              </CardContent>
-            </Card>
-
-            {/* Tableau des Dépenses */}
-            <Card>
-              <CardContent className="pt-4">
-                <DepenseTable
-                  onEditExpense={(depense) => setExpenseToEdit(depense)} // Gérer l'édition
                 />
               </CardContent>
             </Card>
